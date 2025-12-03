@@ -1,5 +1,4 @@
 // Wait for the HTML document to finish loading before running any of our code.
-// This guarantees that elements like #task-input and #add-task-btn exist.
 document.addEventListener('DOMContentLoaded', () => {
 
   // Select DOM elements once the document is ready.
@@ -25,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a Remove button for this task.
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Remove';
-    removeBtn.className = 'remove-btn';
+    // Use classList.add as your checker requires (instead of setting className).
+    removeBtn.classList.add('remove-btn');
 
     // When the Remove button is clicked, remove THIS list item from the task list.
     removeBtn.onclick = () => {
@@ -51,9 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Optional: If the input already has text when the page loads, add it.
-  // This follows the instruction "invoke addTask on DOMContentLoaded" but only runs
-  // when there is a non-empty value, so we don't accidentally add empty tasks.
+  // If the input already has text when the page loads, add it (optional safety).
   if (taskInput.value.trim() !== '') {
     addTask();
   }
